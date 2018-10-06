@@ -48,7 +48,7 @@ def validate_form():
     if is_space(user_name):
         error_user_name = invalid_username
 
-    elif len(user_name) < 3:
+    elif len(user_name) < 3 or len(user_name) > 20:
         error_user_name = invalid_username
         
     if email != '' and match == None:
@@ -60,10 +60,22 @@ def validate_form():
     if is_space(verify_password):
         password_error1 = invalid_password
 
-    if len(password) < 3:
+    if len(password) < 3 or len(password) > 20:
         password_error = invalid_password
         password = ''
         verify_password = ''
+
+    if is_empty(verify_password):
+        password_error1 = invalid_password
+
+    if is_space(verify_password):
+        password_error1 = invalid_password
+
+    if len(password) < 3 or len(password) > 20:
+        password_error = invalid_password
+        password = ''
+        verify_password = ''
+
     elif password != verify_password:
         password_error = 'Passwords do not match'
         password_error1 = 'Passwords do not match'
